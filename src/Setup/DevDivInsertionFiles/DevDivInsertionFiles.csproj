@@ -25,9 +25,8 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <_DevDivInsertionFilesDir>$(ArtifactsConfigurationDir)DevDivInsertionFiles\</_DevDivInsertionFilesDir>
-    <_DependentAssemblyVersionsFile>$(_DevDivInsertionFilesDir)DependentAssemblyVersions.csv</_DependentAssemblyVersionsFile>
-    <_ManagedDependenciesDir>$(ArtifactsConfigurationDir)DevDivPackages\ManagedDependencies\</_ManagedDependenciesDir>
+    <_DependentAssemblyVersionsFile>$(DevDivInsertionFilesDir)DependentAssemblyVersions.csv</_DependentAssemblyVersionsFile>
+    <_ManagedDependenciesDir>$(DevDivInsertionFilesDir)ManagedDependencies\</_ManagedDependenciesDir>
     <_OptimizedDependenciesDir>$(ArtifactsTmpDir)OptimizedDependencies\</_OptimizedDependenciesDir>
     <_OptimizedNuGetPackageVersionSuffix Condition="'$(OfficialBuild)' != 'true'">vs-ci</_OptimizedNuGetPackageVersionSuffix>
     <_OptimizedNuGetPackageVersionSuffix Condition="'$(OfficialBuild)' == 'true'">vs-$(VersionSuffixDateStamp)-$(VersionSuffixBuildOfTheDayPadded)</_OptimizedNuGetPackageVersionSuffix>
@@ -151,7 +150,7 @@
           Inputs="$(MSBuildAllProjects)"
           Outputs="$(_DependentAssemblyVersionsFile)">
 
-    <MakeDir Directories="$(_DevDivInsertionFilesDir)"/>
+    <MakeDir Directories="$(DevDivInsertionFilesDir)"/>
     <WriteLinesToFile Lines="@(_Dependency->'%(_AssemblyName),%(_AssemblyVersion)')" File="$(_DependentAssemblyVersionsFile)" Overwrite="true"/>
 
     <ItemGroup>
